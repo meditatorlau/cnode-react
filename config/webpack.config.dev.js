@@ -144,12 +144,25 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+              plugins: [
+                ['import', { 'libraryName': 'antd-mobile', 'libraryDirectory': 'es', 'style': 'css' }], // `style: true` 会加载 less 文件
+              ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.
               cacheDirectory: true,
             },
+          },
+          {
+            test: /\.less$/,
+            // less
+            use: [{
+              loader: "style-loader" // creates style nodes from JS strings
+            }, {
+              loader: "css-loader" // translates CSS into CommonJS
+            }, {
+              loader: "less-loader" // compiles Less to CSS
+            }]
           },
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.

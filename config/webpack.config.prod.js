@@ -149,9 +149,22 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+              plugins: [
+                ['import', { 'libraryName': 'antd-mobile', 'libraryDirectory': 'es', 'style': 'css' }], // `style: true` 会加载 less 文件
+              ],
               compact: true,
             },
+          },
+          {
+            test: /\.less$/,
+            // less
+            use: [{
+              loader: "style-loader" // creates style nodes from JS strings
+            }, {
+              loader: "css-loader" // translates CSS into CommonJS
+            }, {
+              loader: "less-loader" // compiles Less to CSS
+            }]
           },
           // The notation here is somewhat confusing.
           // "postcss" loader applies autoprefixer to our CSS.
