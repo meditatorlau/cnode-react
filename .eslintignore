@@ -1,0 +1,9 @@
+/node_modules/**
+
+/bulid/**
+
+/src/registerServiceWorker.js
+
+/config/**
+
+/scripts/**

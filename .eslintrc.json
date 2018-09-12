@@ -1,0 +1,49 @@
+{
+    "extends": "airbnb",
+    "env": {
+        "browser": true,
+        "es6": true
+      },
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true,
+          "experimentalDecorators": true
+        }
+      },
+      "rules": {
+        "no-unused-vars": 1,
+        "comma-dangle": 0,
+        "import/no-extraneous-dependencies": 0,
+        "react/jsx-filename-extension": 0,
+        "no-trailing-spaces": 0,
+        "quotes": 0,
+        "global-require": 0,
+        "react/perfer-stateless-function": 0,
+        "max-len": ["error", { "code": 120 }],
+        "react/forbid-prop-types": 0,
+        "jsx-a11y/media-has-caption": 0,
+        "react/no-array-index-key": 0,
+        "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+        "prefer-tempalte": 0,
+        "no-return-assign": 0,
+        "no-underscore-dangle": 0,
+        "jsx-a11y/click-events-have-key-events": 0,
+        "jsx-a11y/no-static-element-interactions": 0,
+        "function-paren-newline": 0,
+        "no-mixed-operators": 0,
+        "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["dom"] }],
+        "no-shadow": 0,
+        "arrow-body-style": 0,
+        "jsx-a11y/anchor-is-valid": [ "error", {
+          "components": [ "Link" ],
+          "specialLink": [ "to" ]
+        }],
+        "no-plusplus": 0,
+        "camelcase": 0,
+        "import/no-mutable-exports": 0
+      },
+      "plugins": [
+        "react"
+      ],
+      "parser": "babel-eslint"
+}
