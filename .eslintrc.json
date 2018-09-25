@@ -41,7 +41,10 @@
         }],
         "no-plusplus": 0,
         "camelcase": 0,
-        "import/no-mutable-exports": 0
+        "import/no-mutable-exports": 0,
+        "import/no-unresolved": 0,
+        "react/destructuring-assignment": 0,
+        "import/prefer-default-export": 0
       },
       "plugins": [
         "react"
