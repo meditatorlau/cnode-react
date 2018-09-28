@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Tabbar from '@/component/Tabbar';
+import RouterConfig from '@/router/RouterConfig';
 import "./App.less";
 
 class App extends Component {
@@ -7,7 +7,7 @@ class App extends Component {
 
   render() {
     return (  
-      <Tabbar />
+      <RouterConfig />
     )
   }
 }
