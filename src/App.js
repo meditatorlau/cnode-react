@@ -1,15 +1,5 @@
-import React, { Component } from "react";
-import RouterConfig from '@/router/RouterConfig';
-import "./App.less";
+import { hot } from 'react-hot-loader';
+import RouterConfig from '@/router';
 
-class App extends Component {
-  state = {}
 
-  render() {
-    return (  
-      <RouterConfig />
-    )
-  }
-}
-
-export default App
+export default hot(module)(RouterConfig);

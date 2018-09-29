@@ -146,6 +146,7 @@ module.exports = {
             loader: require.resolve('babel-loader'),
             options: {
               plugins: [
+                'react-hot-loader/babel',
                 ['import', { 'libraryName': 'antd-mobile', 'libraryDirectory': 'es', 'style': 'css' }], // `style: true` 会加载 less 文件
               ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).

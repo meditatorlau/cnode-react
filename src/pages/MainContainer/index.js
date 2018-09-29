@@ -29,10 +29,13 @@ const dataSource = [
     icon: 'my',
     component: null
   },
-]
+];
 
 export default class MainContainer extends Component {
   state = { }
+
+  componentDidMount() {
+  }
 
   render() {
     return (

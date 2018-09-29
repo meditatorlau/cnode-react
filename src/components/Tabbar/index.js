@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TabBar, Icon } from 'antd-mobile';
-import Header from '@/components/Header';
+import { TabBar } from 'antd-mobile';
 import './index.less';
 
-const TabBarItem = TabBar.Item
+const TabBarItem = TabBar.Item;
 
 export default class TabBarComponent extends Component {
   static propTypes = {

@@ -11,7 +11,7 @@
         }
       },
       "rules": {
-        "semi": 0,
+        "semi": 1,
         "no-unused-vars": 1,
         "comma-dangle": 0,
         "import/no-extraneous-dependencies": 0,
