@@ -7,7 +7,7 @@ const service = axios.create({
 
 service.interceptors.response.use(
   (response) => {
-    return response.data;
+    return response.data.data;
   },
   (error) => {
     return Promise.reject(error);

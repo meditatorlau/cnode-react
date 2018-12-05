@@ -27,5 +27,5 @@ const RouterConfig = () => (
     </Switch>
   </HashRouter>
 );
-console.log(RouterConfig);
+
 export default RouterConfig;

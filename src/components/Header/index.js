@@ -8,7 +8,7 @@ export default class Header extends Component {
     return (
       <NavBar 
         mode="light"
-        icon={<Icon type="left" />}
+        // icon={<Icon type="left" />}
       >
         首页
       </NavBar>
