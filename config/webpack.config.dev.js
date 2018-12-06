@@ -116,7 +116,7 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
+
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -148,6 +148,7 @@ module.exports = {
               plugins: [
                 'react-hot-loader/babel',
                 ['import', { 'libraryName': 'antd-mobile', 'libraryDirectory': 'es', 'style': 'css' }], // `style: true` 会加载 less 文件
+                ['babel-plugin-transform-decorators-legacy']
               ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/

@@ -9,7 +9,7 @@ import request from '@/utils/request';
  * @param {object} mdrender 是否渲染出所欲都markdown格式
  */
 export async function getTopics({
-  page = 1, tab = '', limit = 10
+  page = 1, tab = '', limit = 20
 } = {}) {
   return request('/topics', {
     method: 'GET',

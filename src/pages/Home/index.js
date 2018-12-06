@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import Header from '@/components/Header';
-import { Tabs, ListView } from 'antd-mobile';
+import { Tabs, PullToRefresh, ListView } from 'antd-mobile';
 import List from '@/components/List';
-import { getTopics } from '@/service/api';
+import { fetchTopics } from '@/reducer/topics';
 
 const tabs = [
   { title: '全部' },
@@ -13,37 +14,47 @@ const tabs = [
   { title: '其他' },
 ];
 
+@connect((state) => {
+  return {
+    topics: state.topics,
+  };
+}, {
+  fetchTopics
+})
 export default class Home extends Component {
-  state = {
-    list: []
-  }
+  // state = {
+  //   refreshing: false,
+  //   down: false,
+  // }
 
   componentDidMount() {
-    getTopics().then((data) => {
-      this.setState({
-        list: data
-      });
-    });
+    this.props.fetchTopics();
   }
 
   render() {
-    console.log(this.state.list);
+    const {
+      topics: {
+        all
+      }
+    } = this.props;
+    console.log(all);
+    const row = (rowData) => {
+      return <List dataSource={rowData} />;
+    };
+
     return (
       <div style={{ height: '100%', overflow: 'hidden' }}>
         <Header />
         <div style={{ height: 'calc(100% - 45px)' }}>
           <Tabs tabs={tabs}>
-            <div>
-              {
-                this.state.list.map((data) => {
-                  return (
-                    <List
-                      key={data.id}
-                      dataSource={data}
-                    />
-                  );
-                })
-              }
+            <div style={{ height: '100%' }}>
+              <ListView
+                dataSource={all.data}
+                renderRow={row}
+                style={{ height: '100%' }}
+                pageSize={4}
+                scrollRenderAheadDistance={500}
+              />
             </div>
             <div>2</div>
             <div>3</div>

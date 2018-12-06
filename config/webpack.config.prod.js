@@ -94,7 +94,7 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
-      
+
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -122,7 +122,7 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
+
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -152,6 +152,7 @@ module.exports = {
             options: {
               plugins: [
                 ['import', { 'libraryName': 'antd-mobile', 'libraryDirectory': 'es', 'style': 'css' }], // `style: true` 会加载 less 文件
+                ['babel-plugin-transform-decorators-legacy'],
               ],
               compact: true,
             },
