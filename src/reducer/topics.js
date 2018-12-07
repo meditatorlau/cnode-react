@@ -23,7 +23,8 @@ export function topics(state = {
     data: new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     }),
-    page: 1
+    page: 1,
+    loading: false
   }
 }, action) {
   switch (action.type) {
@@ -31,7 +32,8 @@ export function topics(state = {
       return {
         all: {
           data: state.all.data.cloneWithRows(action.payload),
-          page: 1
+          page: 1,
+          loading: false
         }
       };
     default:

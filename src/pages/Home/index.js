@@ -22,13 +22,23 @@ const tabs = [
   fetchTopics
 })
 export default class Home extends Component {
-  // state = {
-  //   refreshing: false,
-  //   down: false,
-  // }
+  state = {
+    refreshing: false,
+  }
 
   componentDidMount() {
     this.props.fetchTopics();
+  }
+
+  onRefresh = () => {
+    this.setState({
+      refreshing: true
+    });
+    setTimeout(() => {
+      this.setState({
+        refreshing: false
+      });
+    }, 3000);
   }
 
   render() {
@@ -54,6 +64,12 @@ export default class Home extends Component {
                 style={{ height: '100%' }}
                 pageSize={4}
                 scrollRenderAheadDistance={500}
+                pullToRefresh={(
+                  <PullToRefresh
+                    refreshing={this.state.refreshing}
+                    onRefresh={this.onRefresh}
+                  />
+                )}
               />
             </div>
             <div>2</div>
