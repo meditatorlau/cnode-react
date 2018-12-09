@@ -7,12 +7,12 @@ const routes = [
   {
     path: '/',
     exact: true,
-    component: MainContainer
+    component: MainContainer,
   },
   {
     path: '/article/:id',
     exact: true,
-    component: () => import('@/pages/Article')
+    component: () => import('@/pages/Article'),
   }
 ];
 
@@ -21,7 +21,7 @@ const RouterConfig = () => (
     <Switch>
       {
         routes.map((route) => {
-          return <Route {...route} />;
+          return <Route {...route} key={route.path} />;
         })
       }
     </Switch>

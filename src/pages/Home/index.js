@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Header from '@/components/Header';
-import { Tabs, PullToRefresh, ListView } from 'antd-mobile';
+import {
+  Tabs, PullToRefresh, ListView, Icon
+} from 'antd-mobile';
 import List from '@/components/List';
 import { fetchTopics } from '@/reducer/topics';
 
@@ -23,34 +25,40 @@ const tabs = [
 })
 export default class Home extends Component {
   state = {
-    refreshing: false,
+    data: new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1 !== row2,
+    })
+  }
+
+  static getDerivedStateFromProps({ topics }, state) {
+    return {
+      data: state.data.cloneWithRows(topics.all.data)
+    };
   }
 
   componentDidMount() {
-    this.props.fetchTopics();
+    this.props.fetchTopics({});
+  }
+
+  onEndReached = () => {
+    this.props.fetchTopics({ page: this.props.topics.all.page + 1 });
   }
 
   onRefresh = () => {
-    this.setState({
-      refreshing: true
-    });
-    setTimeout(() => {
-      this.setState({
-        refreshing: false
-      });
-    }, 3000);
+    this.props.fetchTopics({ type: 'TOPICS_REFRESH' });
   }
 
   render() {
     const {
       topics: {
-        all
+        all,
       }
     } = this.props;
-    console.log(all);
+
     const row = (rowData) => {
       return <List dataSource={rowData} />;
     };
+
 
     return (
       <div style={{ height: '100%', overflow: 'hidden' }}>
@@ -58,19 +66,39 @@ export default class Home extends Component {
         <div style={{ height: 'calc(100% - 45px)' }}>
           <Tabs tabs={tabs}>
             <div style={{ height: '100%' }}>
-              <ListView
-                dataSource={all.data}
-                renderRow={row}
-                style={{ height: '100%' }}
-                pageSize={4}
-                scrollRenderAheadDistance={500}
-                pullToRefresh={(
-                  <PullToRefresh
-                    refreshing={this.state.refreshing}
-                    onRefresh={this.onRefresh}
+              {
+                (all.loading && !all.data.length) ? (
+                  <Icon
+                    type="loading"
+                    style={{
+                      position: "absolute",
+                      left: '50%',
+                      transform: "-50%",
+                      marginTop: 8
+                    }}
                   />
-                )}
-              />
+                ) : (
+                  <ListView
+                    dataSource={this.state.data}
+                    renderFooter={() => (
+                      <div style={{ padding: 30, textAlign: 'center' }}>
+                        {all.loading ? 'Loading...' : ''}
+                      </div>
+                    )}
+                    renderRow={row}
+                    style={{ height: '100%' }}
+                    pageSize={4}
+                    scrollRenderAheadDistance={500}
+                    onEndReached={this.onEndReached}
+                    pullToRefresh={(
+                      <PullToRefresh
+                        refreshing={all.loading}
+                        onRefresh={this.onRefresh}
+                      />
+                    )}
+                  />
+                )
+              }
             </div>
             <div>2</div>
             <div>3</div>
